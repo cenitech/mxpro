@@ -18,29 +18,28 @@
 	<div class="row placeholders">
 		<div class="col-xs-6 col-sm-2 placeholder">
 			<h4>Contas de email</h4>
-			<span class="text-muted">Sem débitos pendentes.</span>
+			<span class="text-muted">${account.emailAccountsBillingStatus}</span>
 		</div>
 		<div class="col-xs-6 col-sm-2 placeholder">
 			<h4>Domínios</h4>
-			<span class="text-muted">Sem débitos pendentes.</span>
+			<span class="text-muted">${account.domainBillingStatus}</span>
 		</div>
 		<div class="col-xs-6 col-sm-2 placeholder">
 			<h4>Validade</h4>
-			<span class="text-muted">Válido até 26/08/2017.</span>
+			<span class="text-muted">Válido até ${account.expiration.format('dd/MM/yyyy')}.</span>
 		</div>
 		<div class="col-xs-6 col-sm-2 placeholder">
 			<h4>Plano atual</h4>
-			<span class="text-muted">Semestral - 50Gb - 2 contas de
-				email.</span>
+			<span class="text-muted">${account.currentPlan.fullDescription}</span>
 		</div>
 		<div class="col-xs-6 col-sm-2 placeholder">
 			<h4>Valor do plano atual</h4>
-			<span class="text-muted">R$ 230,00 por semestre.</span>
+			<span class="text-muted"><g:formatNumber number="${account.currentPlan.months * account.currentPlan.price}" type="currency"/></span>
 		</div>
 		<div class="col-xs-6 col-sm-2 placeholder">
 			<h4>Saldo</h4>
 			<h3>
-				<span class="label label-primary">R$ 0,00</span>
+				<span class="label label-primary"><g:formatNumber number="${account.balance}" type="currency"/></span>
 			</h3>
 		</div>
 	</div>
@@ -56,12 +55,11 @@
 				<div class="col-xs-12 col-sm-4">
 					<strong>Nome:</strong>
 				</div>
-				<div class="col-xs-12 col-sm-8">Lucas Fagner Van Corte Ceni
-					de Moura</div>
+				<div class="col-xs-12 col-sm-8">${customer.name }</div>
 				<div class="col-xs-12 col-sm-4">
 					<strong>CPF:</strong>
 				</div>
-				<div class="col-xs-12 col-sm-8">000.000.000-99</div>
+				<div class="col-xs-12 col-sm-8">${customer.idNumber }</div>
 				<div class="col-xs-12 col-sm-4">
 					<strong>Endereço:</strong>
 				</div>
@@ -72,11 +70,11 @@
 				<div class="col-xs-12 col-sm-4">
 					<strong>Telefone:</strong>
 				</div>
-				<div class="col-xs-12 col-sm-8">+55 44 9999-3333</div>
+				<div class="col-xs-12 col-sm-8">${customer.mobile }</div>
 				<div class="col-xs-12 col-sm-4">
-					<strong>Email alternativo:</strong>
+					<strong>Email principal:</strong>
 				</div>
-				<div class="col-xs-12 col-sm-8">lucas.moura2560@gmail.com</div>
+				<div class="col-xs-12 col-sm-8">${user.username }</div>
 			</div>
 		</div>
 		<div class="col-xs-6 col-sm-6">

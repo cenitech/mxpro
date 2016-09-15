@@ -18,6 +18,8 @@ class Account {
 	String webmailURL
 	String ticket // ticket for customer to see the account status
 	Set<String> serversURL
+	String emailAccountsBillingStatus
+	String domainBillingStatus
 
 	static embedded = ['serversURL']
 	static hasMany = [invoices : Invoice, emailAccounts : EmailAccount]

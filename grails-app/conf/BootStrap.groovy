@@ -34,9 +34,9 @@ class BootStrap {
 	def initPlans() {
 		if (Plan.count() == 0) {
 			Date now = new Date()
-			new Plan([showOrder: 1, planName:'3 meses', planDescription:'3 meses sendo R$ 21,90/mês', priceDescription:'R$ 21,90', months: 3, price:new BigDecimal(21.90), startDate:now, maxSize: 50, maxEmailAccounts: 2, active:true]).save()
-			new Plan([showOrder: 2, planName:'6 meses', planDescription:'6 meses sendo R$ 18,90/mês', priceDescription:'R$ 18,90', months: 6, price:new BigDecimal(18.90), startDate:now, maxSize: 50, maxEmailAccounts: 2, active:true]).save()
-			new Plan([showOrder: 3, planName:'1 ano', planDescription:'12 meses sendo R$ 14,90/mês', priceDescription:'R$ 14,90', months: 12, price:new BigDecimal(14.90), startDate:now, maxSize: 50, maxEmailAccounts: 2 ,active:true]).save()
+			new Plan([showOrder: 1, planName:'3 meses', planDescription:'3 meses sendo R$ 21,90/mês', priceDescription:'R$ 21,90', months: 3, price:new BigDecimal(21.90), startDate:now, maxSize: 50, maxEmailAccounts: 2, active:true, fullDescription: 'Trimestral - 50Gb - 2 contas de email.']).save()
+			new Plan([showOrder: 2, planName:'6 meses', planDescription:'6 meses sendo R$ 18,90/mês', priceDescription:'R$ 18,90', months: 6, price:new BigDecimal(18.90), startDate:now, maxSize: 50, maxEmailAccounts: 2, active:true, fullDescription: 'Semestral - 50Gb - 2 contas de email.']).save()
+			new Plan([showOrder: 3, planName:'1 ano', planDescription:'12 meses sendo R$ 14,90/mês', priceDescription:'R$ 14,90', months: 12, price:new BigDecimal(14.90), startDate:now, maxSize: 50, maxEmailAccounts: 2 ,active:true, fullDescription: 'Anual - 50Gb - 2 contas de email.']).save()
 		}
 	}
 }

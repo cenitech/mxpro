@@ -153,6 +153,8 @@ class CreateAccountService {
 		]
 		account.invoices = [invoice]
 		account.ticket = UUID.randomUUID().toString()
+		account.emailAccountsBillingStatus = "Sem débitos pendentes"
+		account.domainBillingStatus = "Sem débitos pendentes"
 		account.save()
 		
 		CreditCard creditCard = new CreditCard()

@@ -17,6 +17,7 @@ class Plan {
 	int maxSize // max size in MB for each email account
 	int maxEmailAccounts // max number of email accounts
 	boolean active
+	String fullDescription
 	
     static constraints = {
 		endDate nullable: true
