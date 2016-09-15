@@ -23,13 +23,9 @@ class DashboardController {
 	def contas() {
 		def customer = Customer.findByUser(springSecurityService.getCurrentUser())
 		def account = Account.findByCustomer(customer)
-		def currentEmailAccount = EmailAccount.findByCustomer(customer)
-		def accounts = EmailAccount.findAllByDomain(currentEmailAccount.domain)
-		def numberOfAccounts = accounts.size()
+		def emailAccounts = EmailAccount.findAllByAccount(account)
 		
-		def numberOfAvailable = 0 // calculates how much available accounts are for the current user.
-		
-		[customer: customer, account: account, domain: currentEmailAccount.domain.domain, numberOfAccounts: numberOfAccounts, accounts: accounts, numberOfAvailable: numberOfAvailable]
+		[customer: customer, account: account, domain: account.domain, emailAccounts: emailAccounts]
 	}
 	
 	def financeiro() {

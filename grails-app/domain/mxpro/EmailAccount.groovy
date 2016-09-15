@@ -9,6 +9,7 @@ class EmailAccount {
 	String fullAddress
 	String legacyUser
 	String legacyPassword
+	String legacyNewPassword
 	Integer currentSize // current size in MB for each email account
 	Account account
 	Domain domain
@@ -19,5 +20,6 @@ class EmailAccount {
     static constraints = {
    		accountAddress blank: false
 		fullAddress unique: true
+		legacyNewPassword nullable: true
     }
 }

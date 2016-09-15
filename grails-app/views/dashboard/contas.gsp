@@ -12,12 +12,15 @@
 	</ol>
 </content>
 	<body>
+	  <g:form role="form" elementId="contasForm">
 		<h2 class="sub-header">Domínio</h2>
 		<div class="alert alert-info" role="alert">
 			<div>
-				<strong>${domain}</strong>
+				<strong>${domain.name}</strong>
 			</div>
 			<div>
+				<g:set value="${emailAccounts.size()}" var="numberOfAccounts" />
+				<g:set value="${account.maxEmailAccounts - numberOfAccounts}" var="numberOfAvailable" />
 				<g:if test="${numberOfAccounts == 0}">
 					Nenhuma conta de email cadastrada.
 				</g:if>
@@ -54,9 +57,9 @@
 					</tr>
 				</thead>
 				<tbody>
-					<g:each in="${accounts}" status="i" var="account">
+					<g:each in="${emailAccounts}" status="i" var="account">
 						<tr>
-							<td><input type="checkbox" class="check" /></td>
+							<td><input type="checkbox" class="check" name="ids" value="${account.id}"/></td>
 							<td>${fieldValue(bean: account, field: "fullAddress")}</td>
 							<td>50Gb</td>
 							<td>Sim</td>
@@ -67,15 +70,17 @@
 			</table>
 		</div>
 		<div class="pull-left">
-			<div class="btn btn-default hidden showwhenchecked">
+			<button type="button" class="btn btn-default hidden showwhenchecked"
+				data-toggle="modal" data-target="#modal"
+				onclick="${remoteFunction(controller: 'emailAccount', action: 'changePassword', params: 'jQuery(\'#contasForm\').serialize()', update: 'modal')}">
 				<span class="glyphicon glyphicon-lock"></span> Trocar senha(s)
-			</div>
+			</button>
 		</div>
 		<div class="pull-right">
-			<div class="btn btn-danger hidden showwhenchecked">
-				<span class="glyphicon glyphicon-minus"></span> Remover conta(s)
-				selecionada(s)
-			</div>
+			<button type="button" class="btn btn-danger hidden showwhenchecked"
+				onclick="${remoteFunction(controller: 'emailAccount', action: 'delete', params: 'jQuery(\'#contasForm\').serialize()', onSuccess: 'app.urlRedirect(data)')}">
+				<span class="glyphicon glyphicon-minus"></span> Remover conta(s) selecionada(s)
+			</button>
 			
 			<button type="button" class="btn btn-success"
 				data-toggle="modal" data-target="#modal"
@@ -91,10 +96,11 @@
 			o webmail.
 		</div>
 		<script>
-app.editable();
-app.checkuncheck('.checkuncheck', '.check');
-app.showwhenchecked('.check', '.showwhenchecked', '.checkuncheck');
-</script>
+			app.editable();
+			app.checkuncheck('.checkuncheck', '.check');
+			app.showwhenchecked('.check', '.showwhenchecked', '.checkuncheck');
+		</script>
+	  </g:form>
 	</body>
 </g:applyLayout>
 </html>
