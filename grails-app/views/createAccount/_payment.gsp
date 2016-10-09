@@ -67,7 +67,7 @@
 			<g:hiddenField name="pubkey" value="${grailsApplication.config.moip.publicKey}"/>
 			<g:submitToRemote id="btnSubmit" value="Próximo" class="btn btn-primary pull-right"
 				url="[controller: 'createAccount', action: 'gotoConfirm']"
-				update="createAccountForm" before="hash()"/>
+				update="createAccountForm" before="app.hash()"/>
 			<g:submitToRemote value="Voltar" class="btn btn-default pull-left" url="[controller: 'createAccount', action: 'backToAddress']" update="createAccountForm"/>
 		</fieldset>
 	</div>
@@ -76,25 +76,6 @@
 	function priceDesc() {
 		var txt = $('input[name=\'plan\']:checked').data('pricedesc');
 		jQuery('#price').text(txt);
-	}
-
-	function hash() {
-		var cc = new Moip.CreditCard({
-			number : $('input[name=\'cardnumber\']').val().replace(/\s/g, ''),
-			cvc : $('input[name=\'security\']').val(),
-			expMonth : $('input[name=\'expiration\']').val().substring(0,2),
-			expYear : $('input[name=\'expiration\']').val().substring(5,7),
-			pubKey : $('input[name=\'pubkey\']').val()
-		});
-		if (cc.isValid()) {
-			var brand = Moip.Validator.cardType(cc.number).brand;
-			
-			$('input[name=\'brand\']').val(brand);
-			$('input[name=\'creditCardHash\']').val(cc.hash());
-		} else {
-			$('input[name=\'creditCardHash\']').val('');
-			return false; // Don't submit the form
-		}
 	}
 
 	$(document).on('change', 'input[name=\'plan\']', function() {

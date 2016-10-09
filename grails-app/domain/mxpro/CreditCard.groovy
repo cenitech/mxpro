@@ -13,7 +13,6 @@ class CreditCard {
 	Address address // credit card address, sometimes different from customer address
 	
 	static embedded = ['address']
-	static belongsTo = [customer : Customer]
 	
     static constraints = {
 		token nullable: true

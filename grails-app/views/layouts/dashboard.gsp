@@ -123,11 +123,11 @@
 		<div class="row">
 			<div class="col-sm-3 col-md-2 sidebar">
 				<ul class="nav nav-sidebar">
-					<li class="${ pageProperty(name:'meta.nav').equals( 'inicio' ) ? 'active' : null }"><a href="${createLink(controller: 'dashboard', action: 'index')}">Início</a></li>
-					<li class="${ pageProperty(name:'meta.nav').equals( 'contas' ) ? 'active' : null }"><a href="${createLink(controller: 'dashboard', action: 'contas')}">Contas de email</a></li>
-					<li class="${ pageProperty(name:'meta.nav').equals( 'financeiro' ) ? 'active' : null }"><a href="${createLink(controller: 'dashboard', action: 'financeiro')}">Financeiro</a></li>
-					<li class="${ pageProperty(name:'meta.nav').equals( 'configuracoes' ) ? 'active' : null }"><a href="${createLink(controller: 'dashboard', action: 'configuracoes')}">Configurações</a></li>
-					<li class="${ pageProperty(name:'meta.nav').equals( 'suporte' ) ? 'active' : null }"><a href="${createLink(controller: 'dashboard', action: 'suporte')}">Suporte</a></li>
+					<li class="${ pageProperty(name:'meta.nav').equals( 'inicio' ) ? 'active' : null }"><a href="${createLink(controller: 'dashboard', action: 'index')}"><span class="glyphicon glyphicon-home"></span>  Início</a></li>
+					<li class="${ pageProperty(name:'meta.nav').equals( 'contas' ) ? 'active' : null }"><a href="${createLink(controller: 'dashboard', action: 'contas')}"><span class="glyphicon glyphicon-envelope"></span>  Contas de email</a></li>
+					<li class="${ pageProperty(name:'meta.nav').equals( 'financeiro' ) ? 'active' : null }"><a href="${createLink(controller: 'dashboard', action: 'financeiro')}"><span class="glyphicon glyphicon-credit-card"></span>  Financeiro</a></li>
+					<li class="${ pageProperty(name:'meta.nav').equals( 'configuracoes' ) ? 'active' : null }"><a href="${createLink(controller: 'dashboard', action: 'configuracoes')}"><span class="glyphicon glyphicon-cog"></span>  Configurações</a></li>
+					<li class="${ pageProperty(name:'meta.nav').equals( 'suporte' ) ? 'active' : null }"><a href="${createLink(controller: 'dashboard', action: 'suporte')}"><span class="glyphicon glyphicon-comment"></span>  Suporte</a></li>
 				</ul>
 			</div>
 			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">

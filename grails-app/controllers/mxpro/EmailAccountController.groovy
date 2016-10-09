@@ -15,7 +15,7 @@ class EmailAccountController {
 		session.removeAttribute('emailAccount/account')
 		
 		def customer = Customer.findByUser(springSecurityService.getCurrentUser())
-		def account = Account.findByCustomer(customer)
+		def account = customer.account
 		def domain = account.domain.name
 		
 		def accountCommand = new AccountCommand()

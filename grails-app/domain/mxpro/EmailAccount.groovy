@@ -15,8 +15,6 @@ class EmailAccount {
 	Domain domain
 	EmailAccountStatus status
 	
-	static belongsTo = [account : Account]
-	
     static constraints = {
    		accountAddress blank: false
 		fullAddress unique: true

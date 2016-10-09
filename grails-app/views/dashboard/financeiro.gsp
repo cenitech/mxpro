@@ -12,8 +12,6 @@
 	</ol>
 </content>
 <body>
-	
-
 	<h2 class="sub-header">Status da conta</h2>
 	<div class="row placeholders">
 		<div class="col-xs-6 col-sm-2 placeholder">
@@ -43,42 +41,43 @@
 			</h3>
 		</div>
 	</div>
-	<div>
-      	<div class="btn btn-default"><span class="glyphicon glyphicon-credit-card"></span> Realizar pagamento</div>
-      	<div class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span> Alterar plano</div>
+	<div style="margin-top: 10px;">
+      	<div class="btn btn-default" data-toggle="modal" data-target="#modal" onclick="${remoteFunction(controller: 'billing', action: 'openPaymentForm', update: 'modal')}"><span class="glyphicon glyphicon-credit-card"></span> Realizar pagamento</div>
+      	<div class="btn btn-default" data-toggle="modal" data-target="#modal" onclick="${remoteFunction(controller: 'billing', action: 'openChangePlanForm', update: 'modal')}"><span class="glyphicon glyphicon-pencil"></span> Alterar plano</div>
 	</div>
 
 	<h2 class="sub-header">Titular da Conta</h2>
 	<div class="row">
 		<div class="col-xs-6 col-sm-5">
 			<div class="row">
-				<div class="col-xs-12 col-sm-4">
+				<div class="col-xs-12 col-sm-5">
 					<strong>Nome:</strong>
 				</div>
-				<div class="col-xs-12 col-sm-8">${customer.name }</div>
-				<div class="col-xs-12 col-sm-4">
+				<div class="col-xs-12 col-sm-7">${customer.name}</div>
+				<div class="col-xs-12 col-sm-5">
 					<strong>CPF:</strong>
 				</div>
-				<div class="col-xs-12 col-sm-8">${customer.idNumber }</div>
-				<div class="col-xs-12 col-sm-4">
+				<div class="col-xs-12 col-sm-7">${customer.idNumber}</div>
+				<div class="col-xs-12 col-sm-5">
 					<strong>Endereço:</strong>
 				</div>
-				<div class="col-xs-12 col-sm-8">
-					Av. Anita Garibaldi, 1380<br /> Apto 201<br /> Ahú - Curitiba
-					- Paraná - Brasil<br /> CEP 80540-300<br />
+				<div class="col-xs-12 col-sm-7">
+					${customer.address.street}, ${customer.address.number}<br />${customer.address.complement}<br />${customer.address.city} - ${customer.address.region} - ${customer.address.country}<br /> CEP ${customer.address.zip}<br />
 				</div>
-				<div class="col-xs-12 col-sm-4">
+				<div class="col-xs-12 col-sm-5">
 					<strong>Telefone:</strong>
 				</div>
-				<div class="col-xs-12 col-sm-8">${customer.mobile }</div>
-				<div class="col-xs-12 col-sm-4">
+				<div class="col-xs-12 col-sm-7">${customer.mobile}</div>
+				<div class="col-xs-12 col-sm-5">
 					<strong>Email principal:</strong>
 				</div>
-				<div class="col-xs-12 col-sm-8">${user.username }</div>
+				<div class="col-xs-12 col-sm-7">${user.username}</div>
 			</div>
 		</div>
 		<div class="col-xs-6 col-sm-6">
-			<div class="btn btn-default">
+			<div class="btn btn-default"
+				data-toggle="modal" data-target="#modal"
+				onclick="${remoteFunction(controller: 'billing', action: 'openPersonalDataForm', update: 'modal')}">
 				<span class="glyphicon glyphicon-pencil"></span> Editar
 			</div>
 		</div>
@@ -86,24 +85,33 @@
 
 	<h2 class="sub-header">Dados de Cobrança</h2>
 	<div class="row">
-		<div class="col-xs-6 col-sm-2">
+		<div class="col-xs-3 col-sm-3">
 			<div class="cc-template">
-				<div class="cc-visa-picture"></div>
+				<div class="cc-${customer.currentCreditCard.brand.toLowerCase()}-picture"></div>
 				<div class="cc-number">
 					<div class="cc-hidden-number">•••• •••• ••••</div>
-					<div class="cc-display-number">6051</div>
+					<div class="cc-display-number">${customer.currentCreditCard.last4Digits}</div>
 				</div>
-				<div class="cc-account-holder-name">LUCAS F V C C MOURA</div>
+				<div class="cc-account-holder-name">${customer.currentCreditCard.name}</div>
 			</div>
 		</div>
-		<div class="col-xs-6 col-sm-2">
+		<div class="col-xs-3 col-sm-3">
 			<p>
-				LUCAS F V C C MOURA<br /> Rua Mateus Leme, 2555<br /> Curitiba
-				- Paraná - Brasil<br /> CEP 82.200-000
+				<strong>${customer.currentCreditCard.name}</strong><br/>
+				Rua Bruno João da Silva, 59 TEMP<br/>
+				Casa 1<br/>
+				Curitiba - Paraná - Brasil
+				<g:if test="${customer.currentCreditCard.address}">
+					${customer.currentCreditCard.address.street}, ${customer.currentCreditCard.address.number}<br />
+					${customer.currentCreditCard.address.complement}<br />
+					${customer.currentCreditCard.address.city} - ${customer.currentCreditCard.address.region} - ${customer.currentCreditCard.address.country}<br /> CEP ${customer.currentCreditCard.address.zip}<br />
+				</g:if>
 			</p>
 		</div>
-		<div class="col-xs-6 col-sm-8">
-			<div class="btn btn-default">
+		<div class="col-xs-6 col-sm-6">
+			<div class="btn btn-default"
+				data-toggle="modal" data-target="#modal"
+				onclick="${remoteFunction(controller: 'billing', action: 'openCreditCardForm', update: 'modal')}">
 				<span class="glyphicon glyphicon-pencil"></span> Editar
 			</div>
 		</div>
@@ -121,34 +129,18 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<td>23/08/2016 - 15:31:01</td>
-					<td>Conta criada "contato@mxpro.ml"</td>
-					<td>R$ 0,00</td>
-					<td class="text-info">R$ 0,00</td>
-				</tr>
-				<tr>
-					<td>23/08/2016 - 15:31:01</td>
-					<td>Débito "Plano semestral 50Gb - 2 contas"</td>
-					<td>R$ 200,00</td>
-					<td class="text-danger">(R$ 200,00)</td>
-				</tr>
-				<tr>
-					<td>23/08/2016 - 15:31:01</td>
-					<td>Débito "Registro.br"</td>
-					<td>R$ 30,00</td>
-					<td class="text-danger">(R$ 230,00)</td>
-				</tr>
-				<tr>
-					<td>23/08/2016 - 15:38:01</td>
-					<td>Pagamento realizado - cc final 6051</td>
-					<td>R$ 230,00</td>
-					<td class="text-info">R$ 0,00</td>
-				</tr>
+				<g:each in="${account.statements}" var="statement">
+					<tr>
+						<td>${statement.timestamp.format('dd/MM/yyyy - HH:mm:ss')}</td>
+						<td>${statement.description}</td>
+						<td><g:formatNumber number="${statement.amount}" type="currency"/></td>
+						<td class="text-info"><g:formatNumber number="${statement.balance}" type="currency"/></td>
+					</tr>
+				</g:each>
 			</tbody>
 		</table>
 	</div>
-	<a href="${createLink(controller: 'dashboard', action: 'imprimir')}" class="btn btn-default"><span class="glyphicon glyphicon-print"></span> Imprimir</a>
+	<a href="${createLink(controller: 'billing', action: 'printStatement')}" class="btn btn-default"><span class="glyphicon glyphicon-print"></span> Imprimir</a>
 </body>
 </g:applyLayout>
 </html>

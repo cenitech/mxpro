@@ -9,8 +9,6 @@ class Domain {
 	String registrarRefId
 	DomainStatus domainStatus
 	
-	static belongsTo = [account : Account]
-	
     static constraints = {
 		name blank: false
 		registrar nullable: true

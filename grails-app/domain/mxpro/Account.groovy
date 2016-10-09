@@ -18,17 +18,18 @@ class Account {
 	String webmailURL
 	String ticket // ticket for customer to see the account status
 	Set<String> serversURL
+	Set<Statement> statements
 	String emailAccountsBillingStatus
 	String domainBillingStatus
 
-	static embedded = ['serversURL']
-	static hasMany = [invoices : Invoice, emailAccounts : EmailAccount]
-	static belongsTo = [customer : Customer]
+	static embedded = ['serversURL', 'statements']
+	static hasMany = [invoices: Invoice, emailAccounts: EmailAccount]
 		
     static constraints = {
 		lastPayment nullable: true
 		amount nullable: true
 		balance nullable: true
+		domain nullable: true
 		currentPlan nullable: true
     }
 }

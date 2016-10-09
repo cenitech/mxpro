@@ -29,12 +29,12 @@
 				</form>
 			</div>
 			<div class="col-md-6">
-			<h4>Dicas para facilitar a resolução de problemas</h4>
-			<ul>
-				<li>Seja objetivo, envie o máximo de detalhes possíveis, assim fica mais fácil de identificar o problema.</li>
-				<li>Aguarde o prazo mínimo do chamado, nossa equipe estará trabalhando duro para atendê-lo na primeira oportunidade.</li>
-				<li>Inlcuia corretamente uma informação de contato, sem ela, não poderemos encontrá-lo se precisarmos de algo adicional.</li>
-			</ul>
+				<h4>Dicas para facilitar a resolução de problemas</h4>
+				<ul>
+					<li>Seja objetivo, envie o máximo de detalhes possíveis, assim fica mais fácil de identificar o problema.</li>
+					<li>Aguarde o prazo mínimo do chamado, nossa equipe estará trabalhando duro para atendê-lo na primeira oportunidade.</li>
+					<li>Incluia corretamente uma informação de contato, sem ela, não poderemos encontrá-lo se precisarmos de algo adicional.</li>
+				</ul>
 			</div>
 		</div>
 		<div class="clearfix"></div>

@@ -253,6 +253,11 @@ i {
 }
 
 /* Credit Cards - from Google. */
+.credit-card {
+	padding-left: 0;
+	margin-top: 15px;
+}
+
 .cc-template {
     background: no-repeat url('creditcards.png') 0 -22px;
     height: 110px;
@@ -260,13 +265,39 @@ i {
     position: relative;
     color: #fff;
 }
-.cc-amex-picture, .cc-diners-club-picture, .cc-discover-picture, .cc-jcb-picture, .cc-mastercard-picture, .cc-visa-picture {
+.cc-amex-picture, .cc-diners-picture, .cc-discover-picture, .cc-jcb-picture, .cc-mastercard-picture, .cc-visa-picture {
     bottom: 13px;
     position: absolute;
     right: 13px;
 }
 .cc-visa-picture {
     background: no-repeat url('creditcards.png') -127px -133px;
+    height: 21px;
+    width: 32px;
+}
+.cc-discover-picture {
+    background: no-repeat url('creditcards.png') -160px -133px;
+    height: 21px;
+    width: 32px;
+}
+.cc-jcb-picture {
+    background: no-repeat url('creditcards.png') -63px -133px;
+    height: 21px;
+    width: 30px;
+}
+.cc-amex-picture {
+    background: no-repeat url('creditcards.png') -160px 0px;
+    height: 21px;
+    width: 32px;
+}
+.cc-mastercard-picture {
+    background: no-repeat url('creditcards.png') -60px 0px;
+    height: 21px;
+    width: 32px;
+}
+
+.cc-diners-picture {
+    background: no-repeat url('creditcards.png') -27px 0px;
     height: 21px;
     width: 32px;
 }

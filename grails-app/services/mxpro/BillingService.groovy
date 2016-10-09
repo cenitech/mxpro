@@ -26,4 +26,27 @@ class BillingService {
 	def grailsApplication
 
 	
+	def saveToTest() {
+		
+		
+		Customer c = Customer.get("57f5082c648f021bb4959dc6")
+		c.name = c.name + '2'
+		println c.name
+		println c.account.ticket
+		println c.account.expiration
+		
+		def ccc = c.save(flush: true)
+		println ccc
+		return 1
+	}
+	
+	def addCreditCardToCustomer(String creditCardHash) {
+		println creditCardHash
+		return true
+	}
+	
+	def makePayment(String security) {
+		println security
+		return true
+	}
 }

@@ -8,16 +8,19 @@ class Customer {
 	String idNumber
 	String idType
 	String birthdate
+	String mobile
+	Address address
 	User user
 	Account account
-	String mobile
 	CreditCard currentCreditCard
-	Address address
 
 	static embedded = ['address']
-	static hasMany = [creditCardHistory: CreditCard]
 		
     static constraints = {
 		idNumber unique: true
+		address nullable: true
+		user nullable: true
+		account nullable: true
+		currentCreditCard nullable: true
     }
 }

@@ -7,7 +7,7 @@ class BootStrap {
 
     def init = { servletContext ->
 		initParams()
-		initUsers()
+//		initUsers()
 		initPlans()
     }
     def destroy = {

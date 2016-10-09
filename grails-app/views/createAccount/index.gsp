@@ -17,10 +17,6 @@
 .payment-fieldset {
 	margin-top: 15px;
 }
-.credit-card {
-	padding-left: 0;
-	margin-top: 15px;
-}
 </style>
 </head>
 <body>

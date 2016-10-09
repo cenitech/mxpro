@@ -79,5 +79,35 @@ var app = app || {
 		} else {
 			$('#modal').html(data);
 		}
+	},
+	
+	hash : function() {
+		var cc = new Moip.CreditCard({
+			number : $('input[name=\'cardnumber\']').val().replace(/\s/g, ''),
+			cvc : $('input[name=\'security\']').val(),
+			expMonth : $('input[name=\'expiration\']').val().substring(0,2),
+			expYear : $('input[name=\'expiration\']').val().substring(5,7),
+			pubKey : $('input[name=\'pubkey\']').val()
+		});
+		if (cc.isValid()) {
+			var brand = Moip.Validator.cardType(cc.number).brand;
+			
+			$('input[name=\'brand\']').val(brand);
+			$('input[name=\'creditCardHash\']').val(cc.hash());
+		} else {
+			$('input[name=\'creditCardHash\']').val('');
+			return false; // Don't submit the form
+		}
+	},
+	
+	showCreditCardBrand : function() {
+		$('#cc-brand').removeClass();
+		
+		var cardnumber = $('input[name=\'cardnumber\']').val().replace(/\s/g, '');
+		var cc = Moip.Validator.cardType(cardnumber);
+		
+		if (cc) {
+			$('#cc-brand').addClass('cc-' + cc.brand.toLowerCase() + '-picture');
+		}
 	}
 };
