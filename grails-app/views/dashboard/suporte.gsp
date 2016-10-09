@@ -12,6 +12,7 @@
 	</ol>
 </content>
 <body>
+	<g:form role="form" elementId="suporteForm">
 		<h2 class="sub-header">Abrir um chamado</h2>
 		<p>Abra um chamado para a equipe de suporte descrevendo o problema.</p>
 		<div class="row">
@@ -19,13 +20,16 @@
 				<form>
 					<div class="form-group">
 						<label for="emailTel1">Email ou telefone:</label>
-						<input type="text" class="form-control" id="emailTel1"></input>
+						<input type="text" class="form-control" id="emailTel1" name="contact"></input>
 					</div>
 					<div class="form-group">
 						<label for="desc1">Descrição:</label>
-						<textarea class="form-control" id="desc1"></textarea>
+						<textarea class="form-control" id="desc1" name="description"></textarea>
 					</div>
-					<button type="submit" class="pull-right btn btn-success"><span class="glyphicon glyphicon-share-alt"></span> Enviar solicitação</button>
+					<button type="button" class="pull-right btn btn-success"
+						onclick="${remoteFunction(controller: 'ticket', action: 'createTicket', params: 'jQuery(\'#suporteForm\').serialize()', onSuccess: 'app.urlRedirect(data)')}">
+						<span class="glyphicon glyphicon-share-alt"></span>  Enviar solicitação
+					</button>
 				</form>
 			</div>
 			<div class="col-md-6">
@@ -37,42 +41,39 @@
 				</ul>
 			</div>
 		</div>
-		<div class="clearfix"></div>
+	</g:form>
+	<div class="clearfix"></div>
 
-		<h2 class="sub-header">Histórico de chamados</h2>
-		<div class="table-responsive">
-			<table class="table table-striped">
-				<thead>
+	<h2 class="sub-header">Histórico de chamados</h2>
+	<div class="table-responsive">
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>Número</th>
+					<th>Data de abertura</th>
+					<th>Telefone/email</th>
+					<th>Descrição</th>
+					<th>Data de fechamento</th>
+					<th>Resolução</th>
+					<th>Status</th>
+				</tr>
+			</thead>
+			<tbody>
+				<g:each in="${tickets}" var="ticket">
 					<tr>
-						<th>Número</th>
-						<th>Data de abertura</th>
-						<th>Descrição</th>
-						<th>Data de fechamento</th>
-						<th>Resolução</th>
-						<th>Status</th>
+						<td>${ticket.number}</td>
+						<td><g:formatDate format="dd/MM/yyyy - HH:mm:ss" date="${ticket.begin}"/></td>
+						<td>${ticket.contact}</td>
+						<td>${ticket.description.take(50)}</td>
+						<td><g:formatDate format="dd/MM/yyyy - HH:mm:ss" date="${ticket.end}"/></td>
+						<td>${ticket.resolution}</td>
+						<td>${ticket.status}</td>
 					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>1002</td>
-						<td>16/08/2016 - 08:54h</td>
-						<td>Problema ao realizar login em conta secundária</td>
-						<td>16/08/2016 - 11:54h</td>
-						<td>A senha foi reconfigurada e enviada ao cliente</td>
-						<td>Encerrado</td>
-					</tr>
-					<tr>
-						<td>1001</td>
-						<td>11/08/2016 - 09:31h</td>
-						<td>Cartão de crédito foi rejeitado para comprar um novo pacote</td>
-						<td>14/08/2016 - 13:28h</td>
-						<td>O usuário fez o pagamento via boleto bancário enviado pelo time de suporte</td>
-						<td>Encerrado</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-		<div class="clearfix"></div>
+				</g:each>
+			</tbody>
+		</table>
+	</div>
+	<div class="clearfix"></div>
 </body>
 </g:applyLayout>
 </html>

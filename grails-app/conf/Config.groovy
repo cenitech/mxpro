@@ -170,7 +170,8 @@ grails.plugin.springsecurity.interceptUrlMap = [
 	'/param/**':			['ROLE_ADMIN'],
 	'/dashboard/**':		['isAuthenticated()'],
 	'/emailAccount/**':		['isAuthenticated()'],
-	'/billing/**':			['isAuthenticated()']
+	'/billing/**':			['isAuthenticated()'],
+	'/ticket/**':			['isAuthenticated()']
  ]
 
 grails.gorm.failOnError = true

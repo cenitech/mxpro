@@ -42,6 +42,8 @@ class DashboardController {
 	}
 	
 	def suporte() {
+		def customer = Customer.findByUser(springSecurityService.getCurrentUser())
 		
+		[tickets : customer.account.supportTickets.sort{-it.number}]
 	}
 }

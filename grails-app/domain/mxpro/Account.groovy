@@ -16,14 +16,14 @@ class Account {
 	Boolean notifyNextPaymentDates
 	Boolean notifyBySMS
 	String webmailURL
-	String ticket // ticket for customer to see the account status
+	String ticket // ticket for customer to see the account status when creating at the first time. UUID
 	Set<String> serversURL
 	Set<Statement> statements
 	String emailAccountsBillingStatus
 	String domainBillingStatus
 
 	static embedded = ['serversURL', 'statements']
-	static hasMany = [invoices: Invoice, emailAccounts: EmailAccount]
+	static hasMany = [invoices: Invoice, emailAccounts: EmailAccount, supportTickets: Ticket]
 		
     static constraints = {
 		lastPayment nullable: true
