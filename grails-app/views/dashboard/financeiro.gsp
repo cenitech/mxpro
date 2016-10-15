@@ -44,6 +44,8 @@
 	<div style="margin-top: 10px;">
       	<div class="btn btn-default" data-toggle="modal" data-target="#modal" onclick="${remoteFunction(controller: 'billing', action: 'openPaymentForm', update: 'modal')}"><span class="glyphicon glyphicon-credit-card"></span> Realizar pagamento</div>
       	<div class="btn btn-default" data-toggle="modal" data-target="#modal" onclick="${remoteFunction(controller: 'billing', action: 'openChangePlanForm', update: 'modal')}"><span class="glyphicon glyphicon-pencil"></span> Alterar plano</div>
+      	<div class="btn btn-default" onclick="${remoteFunction(controller: 'billing', action: 'testMoip', update: 'teste')}"><span class="glyphicon glyphicon-pencil"></span> Testar Moip</div>
+      	<p id="teste">teste</p>
 	</div>
 
 	<h2 class="sub-header">Titular da Conta</h2>
@@ -98,9 +100,6 @@
 		<div class="col-xs-3 col-sm-3">
 			<p>
 				<strong>${customer.currentCreditCard.name}</strong><br/>
-				Rua Bruno João da Silva, 59 TEMP<br/>
-				Casa 1<br/>
-				Curitiba - Paraná - Brasil
 				<g:if test="${customer.currentCreditCard.address}">
 					${customer.currentCreditCard.address.street}, ${customer.currentCreditCard.address.number}<br />
 					${customer.currentCreditCard.address.complement}<br />

@@ -9,6 +9,10 @@ class BillingController {
 	def springSecurityService
 	def billingService
 	
+	def testMoip() {
+		billingService.addCreditCardToCustomer("")
+	}
+	
 	def openPaymentForm() {
 		def customer = Customer.findByUser(springSecurityService.getCurrentUser())
 		
@@ -98,10 +102,17 @@ class BillingController {
 			return
 		}
 		
-		if (billingService.addCreditCardToCustomer(command.creditCardHash)) {
+		CreditCard newCreditCard = new CreditCard()
+		newCreditCard.address = new Address()
+		bindData(newCreditCard, command)
+		bindData(newCreditCard.address, command)
+		
+		def result = billingService.addCreditCardToCustomer(newCreditCard, command.creditCardHash)
+		if (result.success) {
 			flash.message = "Cartão de crédito salvo com sucesso na instituição financeira."
 			render ([url:createLink(controller: 'dashboard', action: 'financeiro')]  as JSON)
 		} else {
+			println result
 			command.errors.rejectValue('creditCardValidator', 'creditCardNotValid')
 			render view: 'creditCard', model: [creditCard: command]
 		}
@@ -143,10 +154,13 @@ class CreditCardCommand {
 	def springSecurityService
 	
 	String name
+	String birthDate
+	String idNumber
 	String cardnumber
 	String brand
 	String expiration
 	String security
+	String phoneNumber
 	String zip
 	String street
 	String number

@@ -9,6 +9,7 @@ class Customer {
 	String idType
 	String birthdate
 	String mobile
+	String moipId
 	Address address
 	User user
 	Account account
@@ -18,6 +19,8 @@ class Customer {
 		
     static constraints = {
 		idNumber unique: true
+		birthdate nullable: true
+		moipId nullable: true
 		address nullable: true
 		user nullable: true
 		account nullable: true

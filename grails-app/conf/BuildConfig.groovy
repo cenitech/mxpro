@@ -72,5 +72,6 @@ grails.project.dependency.resolution = {
 		
 		runtime ":jquery:1.11.1"
 		runtime ":twitter-bootstrap:3.1.1.3"
+		compile ":rest:0.8"
     }
 }

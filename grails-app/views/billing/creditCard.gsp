@@ -29,13 +29,33 @@
 				<g:hiddenField name="pubkey" value="${grailsApplication.config.moip.publicKey}"/>
 				
 				<div class="form-group ${hasErrors(bean:creditCard,field:'name','has-error')}" data-toggle="tooltip" title="${fieldError(bean: creditCard, field: 'name')}">
-					<label for="holder">Titular</label>
+					<label for="holder">Titular do cartão de crédito</label>
 					<g:textField name="name" class="form-control" value="${fieldValue(bean:creditCard,field:'name')}"/>
+				</div>
+				<div class="row">
+					<div class="col-xs-4">
+						<div class="form-group ${hasErrors(bean:creditCard,field:'idNumber','has-error')}" data-toggle="tooltip" title="${fieldError(bean: creditCard, field: 'idNumber')}">
+							<label for="idNumber">CPF</label>
+							<g:textField name="idNumber" class="form-control" value="${fieldValue(bean:creditCard,field:'idNumber')}"/>
+						</div>
+					</div>
+					<div class="col-xs-4">
+						<div class="form-group ${hasErrors(bean:creditCard,field:'birthDate','has-error')}" data-toggle="tooltip" title="${fieldError(bean: creditCard, field: 'birthDate')}">
+							<label for="birthDate">Data de Nascimento</label>
+							<g:textField name="birthDate" class="form-control" value="${fieldValue(bean:creditCard,field:'birthDate')}"/>
+						</div>
+					</div>
+					<div class="col-xs-4">
+						<div class="form-group ${hasErrors(bean:creditCard,field:'phoneNumber','has-error')}" data-toggle="tooltip" title="${fieldError(bean: creditCard, field: 'phoneNumber')}">
+							<label for="phoneNumber">Telefone</label>
+							<g:textField name="phoneNumber" class="form-control" value="${fieldValue(bean:creditCard,field:'phoneNumber')}"/>
+						</div>
+					</div>
 				</div>
 				<div class="row">
 					<div class="col-xs-6">
 						<div class="form-group ${hasErrors(bean:creditCard,field:'cardnumber','has-error')}" data-toggle="tooltip" title="${fieldError(bean: creditCard, field: 'cardnumber')}">
-							<label for="cardnumber">Número</label>
+							<label for="cardnumber">Número do cartão de crédito</label>
 							<g:textField name="cardnumber" class="form-control" value="${fieldValue(bean:creditCard,field:'cardnumber')}"/>
 							<div id="cc-brand" class="hidden" style="top: 37px; right: 20px;"></div>
 						</div>
@@ -112,6 +132,9 @@
 </div>
 <script>
 	$(document).ready(function() {
+		$('input[name=\'idNumber\']').mask('?999.999.999-99');
+		$('input[name=\'phoneNumber\']').mask('?(99) 999999999');
+		$('input[name=\'birthDate\']').mask('?99/99/9999');
 		$('input[name=\'cardnumber\']').mask('?9999 9999 9999 9999');
 		$('input[name=\'cardnumber\']').blur(app.showCreditCardBrand);
 		$('input[name=\'expiration\']').mask('?99/9999');

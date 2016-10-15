@@ -58,7 +58,7 @@ class CreateAccountController {
 			return
 		}
 		
-		payment.first4Digits = payment.cardnumber.substring(0,4)
+		payment.first6Digits = payment.cardnumber.substring(0,4) + payment.cardnumber.substring(6,7)
 		payment.last4Digits = payment.cardnumber.substring(payment.cardnumber.length()-4,payment.cardnumber.length())
 		payment.total = payment.plan.total() + (Param.findByName('mxpro.registrobr.price').value as BigDecimal)
 		
@@ -146,7 +146,7 @@ class PaymentCommand {
 	String cardnumber
 	String expiration
 	String security
-	String first4Digits
+	String first6Digits
 	String last4Digits
 	BigDecimal total
 	String creditCardHash
@@ -155,7 +155,7 @@ class PaymentCommand {
 		cardnumber minSize: 19
 		expiration minSize: 7
 		security size: 3..4
-		first4Digits nullable: true
+		first6Digits nullable: true
 		last4Digits nullable: true
 		total nullable: true
 	}

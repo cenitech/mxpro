@@ -1,10 +1,12 @@
 package mxpro
 
+import grails.util.Holders
+
 import java.text.Normalizer
-import java.text.SimpleDateFormat
-import java.util.regex.Pattern
 
 class Util {
+	
+	def static grailsApplication
 
 	private static accented = [
 		'A':'[\u0041\u24B6\uFF21\u00C0\u00C1\u00C2\u1EA6\u1EA4\u1EAA\u1EA8\u00C3\u0100\u0102\u1EB0\u1EAE\u1EB4\u1EB2\u0226\u01E0\u00C4\u01DE\u1EA2\u00C5\u01FA\u01CD\u0200\u0202\u1EA0\u1EAC\u1EB6\u1E00\u0104\u023A\u2C6F]',
@@ -36,7 +38,7 @@ class Util {
 	]
 	
 	/**
-	 * Cria uma expressão regular accent-insensitive
+	 * Cria uma expressï¿½o regular accent-insensitive
 	 * pronta para ser utilizada em pesquisas rlike no mongodb,
 	 * ou em qualquer outro tipo de pesquisa com regex.
 	 * @param text
@@ -69,5 +71,14 @@ class Util {
 		int meterConversion = 1609;
 
 		return new Float(dist * meterConversion).floatValue();
+	}
+	
+	public static String getAuth64String() {
+		String token = Holders.grailsApplication.config.moip.authToken
+		String key = Holders.grailsApplication.config.moip.authKey
+		
+		String auth64 = "Basic " + (token + ":" + key).bytes.encodeBase64().toString()
+		
+		return auth64
 	}
 }

@@ -88,6 +88,7 @@ grails.hibernate.osiv.readonly = false
 environments {
     development {
         grails.logging.jul.usebridge = true
+		moip.url='https://sandbox.moip.com.br'
 		moip.user='lucas.ceni@gmail.com'
 		moip.authToken='0D9YFZEMAUBNHBLSYBPI4ANCRAPLFKIR'
 		moip.authKey='5ZO0DTPCLWSY7TJOX2D44J3ODFKGGAVPGDIIPVAX'
@@ -105,6 +106,7 @@ qQIDAQAB\
     }
     production {
         grails.logging.jul.usebridge = false
+		moip.url='https://api.moip.com.br'
 		moip.user='lucas.ceni@gmail.com'
 		moip.authToken='7GJJYAZOS6HL11OGOPQZ0ZDPQHJP2JH1'
 		moip.authKey='LCFNOMCQSCJEGHVVXP44R096AZEO4NRJXGFFO0HM'

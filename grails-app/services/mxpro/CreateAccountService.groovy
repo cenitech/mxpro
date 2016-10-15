@@ -38,9 +38,10 @@ class CreateAccountService {
 	private doPayment(Customer customer, PaymentCommand payment, String chosenEmailAddress) {
 		String token = grailsApplication.config.moip.authToken
 		String key = grailsApplication.config.moip.authKey
+		String url = grailsApplication.config.moip.url
 		Authentication auth = new BasicAuth(token, key)
 
-		Client client = new Client(Client.SANDBOX, auth);
+		Client client = new Client(url, auth);
 		API api = new API(client);
 
 		Integer total = payment.total.setScale(2, BigDecimal.ROUND_UP).multiply(new BigDecimal(100)).toInteger()
@@ -160,7 +161,7 @@ class CreateAccountService {
 		CreditCard creditCard = new CreditCard()
 		creditCard.name = payment.holder
 		creditCard.brand = payment.brand
-		creditCard.first4Digits = payment.first4Digits
+		creditCard.first6Digits = payment.first6Digits
 		creditCard.last4Digits = payment.last4Digits
 		creditCard.expiration = payment.expiration
 		creditCard.save()
